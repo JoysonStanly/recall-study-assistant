@@ -1,0 +1,36 @@
+{
+  "name": "recall-study-assistant",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Recall — an AI study assistant that turns notes into flashcards and quizzes (React + Gemini).",
+  "type": "module",
+  "scripts": {
+    "start": "concurrently -k -n api,web -c magenta,cyan \"npm:server\" \"npm:client\"",
+    "dev": "npm start",
+    "server": "node --watch server/index.js",
+    "client": "vite",
+    "build": "vite build",
+    "serve": "npm run build && node server/index.js --prod",
+    "test": "vitest run",
+    "start:prod": "node server/index.js --prod"
+  },
+  "engines": {
+    "node": ">=20.19"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "lucide-react": "^1.48.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "concurrently": "^10.0.5",
+    "jsdom": "^30.1.1",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
+  }
+}

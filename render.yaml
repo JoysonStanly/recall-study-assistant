@@ -1,0 +1,21 @@
+# Render Blueprint — one web service that serves both the API and the built React app.
+# Deploy: Render dashboard → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: recall-study-assistant
+    runtime: node
+    plan: free
+    rootDir: frontend
+    # --include=dev: Vite (a devDependency) is needed to build the frontend.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: GEMINI_API_KEY
+        sync: false # you'll be prompted for the value in the dashboard
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: ALLOW_SIMULATE
+        value: "true"
